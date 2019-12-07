@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Types.fs" />
+    <Compile Include="Shared.fs" />
+    <Compile Include="Operators.fs" />
+    <Compile Include="ObjectConverters.fs" />
+  </ItemGroup>
+
+</Project>
