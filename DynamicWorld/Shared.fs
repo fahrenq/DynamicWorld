@@ -6,6 +6,6 @@ module Shared =
       match x with
       | :? (PathAndValue<obj>) as pv -> pv.Path, pv.Value
       | _ -> [||], x
-    Error <| UnexpectedValue { Path = path; ExpectedType = expectedType; ActualValue = value }
+    Error <| UnexpectedValueType { Path = path; ExpectedType = expectedType; ActualValue = value }
 
 

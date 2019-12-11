@@ -19,7 +19,7 @@ module Types =
     | Decimal
     | Sequence
 
-  type UnexpectedValueError =
+  type UnexpectedValueTypeError =
     {
       Path: string []
       ExpectedType: DynamicType
@@ -28,7 +28,8 @@ module Types =
 
   type DynamicWorldError =
     | KeyNotFound of Path
-    | UnexpectedValue of UnexpectedValueError
+    | InvalidValue of Path * string
+    | UnexpectedValueType of UnexpectedValueTypeError
 
   type StepResult<'t> = Result<'t, DynamicWorldError>
 
