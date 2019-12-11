@@ -55,11 +55,14 @@ module ObjectConverters =
     | :? decimal as x -> Ok <| decimal x
     | x -> unexpectedTypeErrorCase x DynamicType.Decimal
 
-  let rec asSeq: obj -> StepResult<seq<_>> =
+  let rec asSeq: obj -> StepResult<seq<obj>> =
     function
     | :? (StepResult<obj>) as x -> x |> Result.bind asSeq
-    | :? (PathAndValue<obj>) as x when (x.Value :? IEnumerable<_>) ->
-      Ok <| (x.Value :?> seq<_>)
-    | :? (IEnumerable<_>) as x -> Ok x
+    | :? (PathAndValue<obj>) as x when (x.Value :? IEnumerable<obj>) ->
+      Ok <| (x.Value :?> seq<obj>)
+    | :? (IEnumerable<obj>) as x -> Ok x
     | x -> unexpectedTypeErrorCase x DynamicType.Sequence
+
+  let rec asList (x: obj): StepResult<obj list> =
+    x |> asSeq |> Result.map Seq.toList
 

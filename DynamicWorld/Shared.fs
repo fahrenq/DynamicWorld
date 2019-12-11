@@ -1,6 +1,6 @@
 namespace DynamicWorld
 
-module private Shared =
+module Shared =
   let unexpectedTypeErrorCase (x: obj) expectedType =
     let path, value =
       match x with
