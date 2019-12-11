@@ -40,6 +40,13 @@ module ObjectConverters =
     | :? bool as x -> Ok x
     | x -> unexpectedTypeErrorCase x DynamicType.Bool
 
+  let rec asInt: obj -> StepResult<int> =
+    function
+    | :? (StepResult<obj>) as x -> x |> Result.bind asInt
+    | :? (PathAndValue<obj>) as x when (x.Value :? int) -> Ok (x.Value :?> int)
+    | :? int as x -> Ok <| x
+    | x -> unexpectedTypeErrorCase x DynamicType.Integer32
+
   let rec asDecimal: obj -> StepResult<decimal> =
     function
     | :? (StepResult<obj>) as x -> x |> Result.bind asDecimal

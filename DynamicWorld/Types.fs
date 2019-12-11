@@ -17,6 +17,7 @@ module Types =
     | DateTime
     | Bool
     | Decimal
+    | Integer32
     | Sequence
 
   type UnexpectedValueTypeError =
