@@ -29,6 +29,7 @@ module Types =
 
   type DynamicWorldError =
     | KeyNotFound of Path
+    | KeyIsNull of Path
     | InvalidValue of Path * string
     | UnexpectedValueType of UnexpectedValueTypeError
 
